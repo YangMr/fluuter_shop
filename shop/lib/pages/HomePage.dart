@@ -88,19 +88,73 @@ class _HomePageState extends State<HomePage> {
                   width: setWidth(140),
                   height: setHeight(140),
                   margin: EdgeInsets.only(right: setWidth(21)),
-                  child: Image.network(
-                      loveProductList[index]["url"],
+                  child: Image.network(loveProductList[index]["url"],
                       fit: BoxFit.cover),
                 ),
                 Container(
-                    padding: EdgeInsets.only(top: setHeight(10)),
-                    child: Text(loveProductList[index]['title']),
-                  ),
+                  padding: EdgeInsets.only(top: setHeight(10)),
+                  child: Text(loveProductList[index]['title']),
+                ),
               ],
             );
           },
           itemCount: loveProductList.length,
         ));
+  }
+
+  //封装热门推荐商品组件
+  Widget _hotProductListWidget() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: AspectRatio(
+              aspectRatio: 1 / 1,
+              child: Image.network(
+                "https://www.itying.com/images/flutter/list1.jpg",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: setHeight(10)),
+            child: Text("2019夏季新款气质高贵洋气非常好看的一写衣服，你一定要买",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.black54,
+                )),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: setHeight(10)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  "¥188.0",
+                  style: TextStyle(
+                    fontSize: setFontSize(30),
+                    color: Colors.red,
+                  ),
+                ),
+                Text(
+                  "¥188.0",
+                  style: TextStyle(
+                      fontSize: setFontSize(25),
+                      decoration: TextDecoration.lineThrough),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(10),
+      width: (getScreenWidth() - 40) / 2,
+      decoration: BoxDecoration(
+        border: Border.all(width: setWidth(1), color: Colors.black45),
+      ),
+    );
   }
 
   @override
@@ -130,7 +184,29 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: setHeight(10)),
 
         //热门推荐标题
-        _titleWidget("热门推荐")
+        _titleWidget("热门推荐"),
+
+        //设置间距
+        SizedBox(height: setHeight(20)),
+
+        //热门推荐商品列表
+        Container(
+          margin: EdgeInsets.only(left : setWidth(20)),
+          child: Wrap(
+            spacing: setWidth(20),
+            runSpacing: setWidth(20),
+            children: <Widget>[
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+              _hotProductListWidget(),
+            ],
+          ),
+        ),
       ],
     );
   }
