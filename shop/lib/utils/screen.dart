@@ -8,11 +8,11 @@ setInit(context){
 }
 
 //设置宽度的方法
-setHeight(value){
+setHeight(double value){
   return ScreenUtil().setHeight(value);
 }
 //设置高度的方法
-setWidth(value){
+setWidth(double value){
   return ScreenUtil().setHeight(value);
 }
 //获取设备的宽度
